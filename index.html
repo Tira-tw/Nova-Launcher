@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>Nova Launcher</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .ui-no-select { -webkit-user-select: none; user-select: none; }
+    .ui-allow-input { -webkit-user-select: text !important; user-select: text !important; }
+  </style>
+</head>
+<body class="overflow-hidden bg-slate-50 text-slate-800 font-sans h-screen flex m-0">
+
+  <div class="w-24 bg-white border-r border-slate-200 flex flex-col items-center py-6 gap-5 flex-shrink-0 ui-no-select">
+    <div id="nav-home" class="nav-item flex flex-col items-center gap-1 cursor-pointer p-2.5 text-slate-400 hover:text-slate-600 transition w-20 rounded-xl">
+      <span class="text-2xl">🏠</span><span data-lang="nav_home" class="text-xs font-medium">主頁</span>
+    </div>
+    <div id="nav-library" class="nav-item flex flex-col items-center gap-1 cursor-pointer bg-blue-600 text-white rounded-xl p-2.5 w-20 shadow-md shadow-blue-200 transition">
+      <span class="text-2xl">🎁</span><span data-lang="nav_library" class="text-xs font-medium">收藏庫</span>
+    </div>
+    <div id="nav-resolution" class="nav-item flex flex-col items-center gap-1 cursor-pointer p-2.5 text-slate-400 hover:text-slate-600 transition w-20 rounded-xl">
+      <span class="text-2xl">🖥️</span><span data-lang="nav_resolution" class="text-xs font-medium">解析度修改</span>
+    </div>
+  </div>
+
+  <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+    
+    <div class="absolute top-4 right-4 z-50 ui-no-select">
+      <button id="btn-lang-toggle" class="px-3 py-1.5 bg-white hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-bold text-slate-600 shadow-sm cursor-pointer transition flex items-center gap-1">
+        🌐 <span>English</span>
+      </button>
+    </div>
+
+    <div id="page-home" class="content-page hidden p-6 flex flex-col gap-6 overflow-y-auto no-scrollbar flex-1 ui-no-select">
+      <div class="bg-gradient-to-r from-slate-800 to-slate-900 text-white p-5 rounded-2xl shadow-md flex justify-between items-center flex-shrink-0">
+        <div>
+          <h2 class="text-xl font-bold m-0 text-white flex items-center gap-2">
+            Nova Launcher
+            <span id="launcher-version" class="text-[11px] bg-blue-600/80 text-white px-2 py-0.5 rounded-md font-mono">v1</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1 mb-0"><span data-lang="status_text">當前啟動器狀態：</span><span data-lang="status_online" class="text-emerald-400 font-bold">🟢 正常運行</span></p>
+        </div>
+        <div class="text-right">
+          <span class="text-[10px] text-slate-500 block font-mono">SYSTEM</span>
+          <span class="text-xs font-mono font-bold text-blue-400">READY</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col items-center justify-center gap-4 flex-1">
+        <div class="w-32 h-32 rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 flex-shrink-0 transform hover:scale-105 transition duration-300">
+          <img src="7877cfeb73567fd56d825b117af006f1.jpg" alt="Nxy Avatar" class="w-full h-full object-cover" onerror="this.src='https://avatars.githubusercontent.com/u/64715639?v=4'">
+        </div>
+        <div class="text-center">
+          <h3 class="text-lg font-black text-slate-800 m-0 tracking-wider"><span data-lang="author_title">製作者</span> Nxy</h3>
+          <p class="text-xs text-slate-400 mt-1 mb-0 font-mono">Core Version: <span id="info-version" class="text-slate-600 font-semibold">1.0.0</span></p>
+        </div>
+        <div class="w-16 h-1 bg-slate-200 rounded-full my-1"></div>
+        <p data-lang="author_desc" class="text-center text-[11px] text-slate-400 max-w-xs leading-relaxed m-0">
+          本程式僅供TWN.Net/Nova/Nusantara使用。<br>
+          © 2026 Nxy. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <div id="page-library" class="content-page hidden flex-1 flex h-full overflow-hidden">
+      
+      <div class="w-[45%] p-6 flex flex-col gap-4 overflow-y-auto no-scrollbar ui-no-select border-r border-slate-100 bg-white">
+        <h2 data-lang="library_title" class="text-xl font-bold flex items-center gap-2 m-0 text-slate-800">我的遊戲庫</h2>
+        <div class="flex flex-col gap-3">
+          <div class="game-card bg-blue-600 text-white p-4 rounded-xl shadow-md border border-blue-500 cursor-pointer transition transform active:scale-[0.99]" data-name="W6W TWN.Net" data-profilekey="w6w" data-tppath="profiles/w6w/TeknoParrot/TeknoParrotUi.exe" data-discord="https://discord.gg/pPmJ8ME93e" data-version="版本 : 4.00.13" data-version-en="Version : 4.00.13" data-owner="W6W TWN.Net Owner : 冰汽水" data-owner-en="W6W TWN.Net Owner : 冰汽水" data-logo="https://static.wikia.nocookie.net/wanganmidnight/images/8/82/6RR_Logo.png/revision/latest/scale-to-width-down/1200?cb=20211006033723">
+            <h3 class="font-bold text-base m-0 text-white">W6W TWN.Net</h3>
+            <p class="text-xs text-blue-100 mt-1 mb-0">discord.gg/pPmJ8ME93e</p>
+            <p class="text-[11px] text-blue-200 opacity-80 mt-2 mb-0">launcher Make By. Nxy</p>
+          </div>
+          <div class="game-card bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:border-slate-300 cursor-pointer transition transform active:scale-[0.99]" data-name="WM5 Nova" data-profilekey="wm5" data-tppath="profiles/wm5/TeknoParrot/TeknoParrotUi.exe" data-discord="https://discord.gg/49TTWeUXdn" data-version="版本 : 1.00.05" data-version-en="Version : 1.00.05" data-owner="WM5 Nova Owner : Nxy" data-owner-en="WM5 Nova Owner : Nxy" data-logo="https://static.wikia.nocookie.net/wanganmidnight/images/a/a1/WMMT5_Logo.png/revision/latest?cb=20220219125927">
+            <h3 class="font-bold text-base text-slate-800 m-0">WM5 Nova</h3>
+            <p class="text-xs text-slate-400 mt-1 mb-0">discord.gg/49TTWeUXdn</p>
+            <p class="text-[11px] text-slate-400 opacity-80 mt-2 mb-0">launcher Make By. Nxy</p>
+          </div>
+          <div class="game-card bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:border-slate-300 cursor-pointer transition transform active:scale-[0.99]" data-name="W5P Nusantara" data-profilekey="w5p" data-tppath="profiles/w5p/TeknoParrotUI/TeknoParrotUi.exe" data-discord="https://discord.gg/3mmFzx4fNs" data-version="版本 : 3.00.05" data-version-en="Version : 3.00.05" data-owner="W5P Nusantara Owner : JaBSpace" data-owner-en="W5P Nusantara : JaBSpace" data-logo="https://wanganmaxi-official.com/wanganmaxi5dx/en/news/img/009/1.png">
+            <h3 class="font-bold text-base text-slate-800 m-0">W5P Nusantara</h3>
+            <p class="text-xs text-slate-400 mt-1 mb-0">discord.gg/3mmFzx4fNs</p>
+            <p class="text-[11px] text-slate-400 opacity-80 mt-2 mb-0">launcher Make By. Nxy</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="right-panel" class="flex-1 p-6 bg-slate-50 flex flex-col justify-between ui-no-select">
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-start gap-4">
+          <div class="flex-1 min-w-0">
+            <h2 id="detail-title" class="text-xl font-bold text-slate-800 m-0">W6W TWN.Net</h2>
+            <p id="detail-sub" class="text-xs text-slate-400 mt-1 mb-0 font-mono">版本 : 4.00.13</p>
+            <p id="detail-desc" class="text-xs text-slate-500 mt-4 mb-0 leading-relaxed cursor-pointer hover:text-blue-600 hover:underline">W6W TWN.Net Owner : 冰汽水</p>
+          </div>
+          <div class="w-24 h-20 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center p-2 flex-shrink-0 shadow-inner overflow-hidden">
+            <img id="detail-logo" src="https://static.wikia.nocookie.net/wanganmidnight/images/8/82/6RR_Logo.png/revision/latest/scale-to-width-down/1200?cb=20211006033723" alt="Game Logo" class="w-full h-full object-contain">
+          </div>
+        </div>
+        
+        <div class="w-full flex flex-col gap-3 mt-auto">
+          <button id="btn-terminal" data-lang="btn_terminal" class="w-full py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-md shadow-teal-100 flex justify-center items-center gap-2 text-sm cursor-pointer">💻 開啟 MaxiTerminal</button>
+          <button id="btn-patch" data-lang="btn_patch" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md shadow-emerald-100 flex justify-center items-center gap-2 text-sm">🛠️ 安裝相容性補丁</button>
+          <button id="btn-open-tp" data-lang="btn_tp" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl shadow-lg shadow-blue-200 flex justify-center items-center gap-2 text-base">➔ 打开 TeknoParrot 介面</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="page-resolution" class="content-page hidden flex-1 p-6 flex flex-col justify-center items-center select-none">
+      <div class="bg-white w-[420px] p-8 rounded-2xl border border-slate-200 shadow-xl flex flex-col items-center gap-5 text-center">
+        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl shadow-inner">🖥️</div>
+        <div>
+          <h3 data-lang="res_title" class="text-lg font-black text-slate-800 m-0 tracking-wider">WMMT 解析度修正面板</h3>
+          <p data-lang="res_desc" class="text-xs text-slate-400 mt-1.5 px-2 leading-relaxed">點擊下方按鈕將會為您開啟官方多版本通用畫面比例調校工具。</p>
+        </div>
+        <div class="w-full h-[1px] bg-slate-100 my-1"></div>
+        <button id="btn-run-patcher" data-lang="res_btn" class="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold rounded-xl text-sm shadow-lg shadow-blue-100 active:scale-[0.98] cursor-pointer">🚀 喚醒 WMMT Resolution Patcher</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="patch-modal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50">
+    <div class="bg-white w-[480px] rounded-2xl shadow-2xl p-6 border border-slate-100 flex flex-col gap-4 animate-in fade-in zoom-in duration-200">
+      <div class="ui-no-select">
+        <h3 data-lang="modal_header">🛠️ 相容性環境佈署</h3>
+        <p data-lang="modal_desc" class="text-xs text-slate-400 mt-1 leading-relaxed">請輸入或貼上您這款遊戲的資料夾本體位置。</p>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label id="modal-input-label" class="text-xs font-bold text-blue-600 select-none">❓ 請問遊戲檔案本體位置路徑：</label>
+        <input type="text" id="patch-game-path" placeholder="D:\Games\wmmt..." class="ui-allow-input w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-blue-500 font-mono text-slate-700 shadow-inner">
+      </div>
+      <div class="flex justify-end gap-2 mt-2 ui-no-select">
+        <button id="btn-patch-cancel" data-lang="modal_cancel" class="px-4 py-2 bg-slate-100 text-xs font-bold rounded-lg text-slate-600 transition">取消</button>
+        <button id="btn-patch-submit" data-lang="modal_submit" class="px-5 py-2 bg-emerald-600 text-white text-xs font-bold rounded-lg shadow-md">確認送出</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    let currentTpPath = "profiles/w6w/TeknoParrot/TeknoParrotUi.exe";
+    let currentProfileKey = "w6w";
+    let currentDiscord = "https://discord.gg/pPmJ8ME93e";
+    let currentLang = 'tw';
+
+    const langDict = {
+      tw: {
+        nav_home: "主頁", nav_library: "收藏庫", nav_resolution: "解析度修改",
+        status_text: "當前啟動器狀態：", status_online: "🟢 正常運行", author_title: "製作者", author_desc: "本程式僅供TWN.Net/Nova/Nusantara使用。<br>© 2026 Nxy. All rights reserved.",
+        library_title: "我的遊戲庫", res_title: "WMMT 解析度修正面板", res_desc: "點擊下方按鈕將會為您開啟官方多版本通用畫面比例調校工具。", res_btn: "🚀 喚醒 WMMT Resolution Patcher",
+        btn_terminal: "💻 開啟 MaxiTerminal", btn_patch: "🛠️ 安裝相容性補丁", btn_tp: "➔ 打开 TeknoParrot 介面",
+        modal_header: "🛠️ 相容性環境佈署", modal_desc: "請輸入或貼上您這款遊戲的資料夾本體位置。", modal_q: "❓ 請問遊戲檔案本體位置路徑：", modal_cancel: "取消", modal_submit: "確認送出",
+        alert_path_empty: "請先輸入有效的遊戲資料夾路徑！", lang_btn: "🌐 English"
+      },
+      en: {
+        nav_home: "Home", nav_library: "Library", nav_resolution: "Resolution",
+        status_text: "Launcher Status: ", status_online: "🟢 Online", author_title: "Developer:", author_desc: "This program is only for TWN.Net/Nova/Nusantara.<br>© 2026 Nxy. All rights reserved.",
+        library_title: "My Game Library", res_title: "WMMT Resolution Patcher", res_desc: "Click the button below to open the universal resolution adjustment tool.", res_btn: "🚀 Run Resolution Patcher",
+        btn_terminal: "💻 Run MaxiTerminal", btn_patch: "🛠️ Install Compatibility Patch", btn_tp: "➔ Open TeknoParrot UI",
+        modal_header: "🛠️ Deploy Compatibility Patch", modal_desc: "Please enter or paste your local game root folder directory location.", modal_q: "❓ Enter game root directory path:", modal_cancel: "Cancel", modal_submit: "Submit Path",
+        alert_path_empty: "Please input a valid folder directory path first!", lang_btn: "🌐 繁體中文"
+      }
+    };
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        const key = el.getAttribute('data-lang');
+        if (langDict[lang][key]) {
+          if (el.tagName === 'INPUT') el.placeholder = langDict[lang][key];
+          else el.innerHTML = langDict[lang][key];
+        }
+      });
+      document.getElementById('btn-lang-toggle').querySelector('span').innerText = lang === 'tw' ? "English" : "繁體中文";
+      const activeCard = document.querySelector('.game-card.bg-blue-600');
+      if (activeCard) activeCard.click();
+    }
+
+    document.getElementById('btn-lang-toggle').addEventListener('click', () => {
+      applyLanguage(currentLang === 'tw' ? 'en' : 'tw');
+    });
+
+    const navItems = { 'nav-home': 'page-home', 'nav-library': 'page-library', 'nav-resolution': 'page-resolution' };
+    Object.keys(navItems).forEach(navId => {
+      const btn = document.getElementById(navId);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.nav-item').forEach(el => el.className = "nav-item flex flex-col items-center gap-1 cursor-pointer p-2.5 text-slate-400 hover:text-slate-600 transition w-20 rounded-xl");
+          btn.className = "nav-item flex flex-col items-center gap-1 cursor-pointer bg-blue-600 text-white rounded-xl p-2.5 w-20 shadow-md shadow-blue-200 transition";
+          document.querySelectorAll('.content-page').forEach(page => page.classList.add('hidden'));
+          document.getElementById(navItems[navId]).classList.remove('hidden');
+        });
+      }
+    });
+
+    document.querySelectorAll('.ui-allow-input').forEach(input => {
+      input.addEventListener('mousedown', (e) => { e.stopPropagation(); });
+      input.addEventListener('click', () => { input.focus(); });
+    });
+
+    const cards = document.querySelectorAll('.game-card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        cards.forEach(c => c.className = "game-card bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:border-slate-300 cursor-pointer transition transform active:scale-[0.99]");
+        card.className = "game-card bg-blue-600 text-white p-4 rounded-xl shadow-md border border-blue-500 cursor-pointer transition transform active:scale-[0.99]";
+
+        const isTw = currentLang === 'tw';
+        document.getElementById('detail-title').innerText = card.getAttribute('data-name');
+        document.getElementById('detail-sub').innerText = isTw ? card.getAttribute('data-version') : card.getAttribute('data-version-en');
+        document.getElementById('detail-desc').innerText = isTw ? card.getAttribute('data-owner') : card.getAttribute('data-owner-en');
+        document.getElementById('detail-logo').src = card.getAttribute('data-logo');
+        
+        currentTpPath = card.getAttribute('data-tppath'); 
+        currentProfileKey = card.getAttribute('data-profilekey');
+        currentDiscord = card.getAttribute('data-discord');
+
+        const prefixQ = isTw ? langDict.tw.modal_q : langDict.en.modal_q;
+        document.getElementById('modal-input-label').innerText = `${prefixQ} [ ${card.getAttribute('data-name')} ]`;
+
+        // 💡 修正：這三個版本都擁有各自的終端機，所以 w6w, wm5, w5p 都需要解鎖顯示
+        const termBtn = document.getElementById('btn-terminal');
+        if (currentProfileKey === 'w6w' || currentProfileKey === 'wm5' || currentProfileKey === 'w5p') {
+          termBtn.classList.remove('hidden');
+        } else {
+          termBtn.classList.add('hidden');
+        }
+      });
+    });
+
+    document.getElementById('btn-run-patcher').addEventListener('click', () => { ipcRenderer.send('action-trigger', { action: 'open-resolution-patcher' }); });
+    
+    // 點擊事件傳遞給後端處理
+    document.getElementById('btn-terminal').addEventListener('click', () => { 
+      ipcRenderer.send('action-trigger', { action: 'open-maxi-terminal', profileKey: currentProfileKey }); 
+    });
+
+    const patchModal = document.getElementById('patch-modal');
+    document.getElementById('btn-patch').addEventListener('click', () => { document.getElementById('patch-game-path').value = ''; patchModal.classList.remove('hidden'); document.getElementById('patch-game-path').focus(); });
+    document.getElementById('btn-patch-cancel').addEventListener('click', () => { patchModal.classList.add('hidden'); });
+    document.getElementById('btn-patch-submit').addEventListener('click', () => {
+      const userPath = document.getElementById('patch-game-path').value;
+      if (!userPath || userPath.trim() === '') { alert(langDict[currentLang].alert_path_empty); return; }
+      ipcRenderer.send('action-trigger', { action: 'install-patch', profileKey: currentProfileKey, gameTargetDir: userPath });
+    });
+
+    ipcRenderer.on('patch-response', (event, res) => {
+      if (res.success) { alert(res.message); patchModal.classList.add('hidden'); } 
+      else { alert(`❌ Failed:\n\n${res.error}`); }
+    });
+
+    document.getElementById('btn-open-tp').addEventListener('click', () => { ipcRenderer.send('action-trigger', { action: 'open-tp', tpPath: currentTpPath }); });
+    document.getElementById('detail-desc').addEventListener('click', () => { ipcRenderer.send('open-link', currentDiscord); });
+
+    applyLanguage('tw');
+    document.getElementById('nav-home').click();
+  </script>
+</body>
+</html>
